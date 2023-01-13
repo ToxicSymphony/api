@@ -10,13 +10,14 @@ const Producto = dataBase.define('productos', {
   }, 
   descripcion: {
     type: DataTypes.STRING
-  }
-  , 
+  }, 
   cantidad: {
     type: DataTypes.STRING
-  }
-  , 
+  }, 
   valor: {
+    type: DataTypes.STRING
+  },
+  categoria:{
     type: DataTypes.STRING
   },
   gama: {
