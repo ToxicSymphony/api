@@ -18,6 +18,12 @@ const Producto = dataBase.define('productos', {
   , 
   valor: {
     type: DataTypes.STRING
+  },
+  gama: {
+    type: DataTypes.STRING
+  },
+  imagen: {
+    type: DataTypes.STRING
   }
 })
 
