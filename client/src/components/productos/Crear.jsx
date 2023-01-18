@@ -17,7 +17,7 @@ const Crear = () => {
 
   const crearProducto = async (e) => {
     e.preventDafault()
-    producto = {
+    const producto = {
       referencia,
       nombre,
       descripcion,
@@ -33,7 +33,7 @@ const Crear = () => {
 
   return (
     <section className="container bg-warning p-5">
-      <form className="form-control p-5" action="" method="">
+      <form  className="form-control p-5">
         <section className="row">
           <section className="col">
             <input
