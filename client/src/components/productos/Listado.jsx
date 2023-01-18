@@ -16,11 +16,17 @@ const Listado = () => {
     console.log(res.data);
   };
 
+  const eliminarProducto = async (id) => {
+    await axios.delete(`${urlProductos}/${id}`)
+    mostrarProductos()
+  }
+
   return (
     <section className="container mt-5">
       <table className="table table-striped text-center">
         <thead>
           <tr>
+            <td>Acciones</td>
             <td>Referencia</td>
             <td>Nombre</td>
             <td>Descripción</td>
@@ -34,6 +40,9 @@ const Listado = () => {
         <tbody>
           {productos.map((producto) => (
             <tr>
+              <td>
+                <button className="btn btn-danger form-control">Eliminar</button>
+              </td>
               <td>{producto.referencia}</td>
               <td>{producto.nombre}</td>
               <td>{producto.descripcion}</td>
