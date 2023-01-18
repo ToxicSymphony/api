@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import {Link} from 'react-router-dom'
 const urlProductos = "http://localhost:3100/productos";
 
 const Listado = () => {
@@ -23,6 +24,7 @@ const Listado = () => {
 
   return (
     <section className="container mt-5">
+      <Link to={'/crear'} className="btn btn-success form-control" >Crear Producto</Link>
       <table className="table table-striped text-center">
         <thead>
           <tr>
@@ -41,7 +43,7 @@ const Listado = () => {
           {productos.map((producto) => (
             <tr>
               <td>
-                <button className="btn btn-danger form-control">Eliminar</button>
+                <button onClick={()=> eliminarProducto(producto.id) } className="btn btn-danger form-control">Eliminar</button>
               </td>
               <td>{producto.referencia}</td>
               <td>{producto.nombre}</td>
