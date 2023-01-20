@@ -44,6 +44,7 @@ const Listado = () => {
             <tr>
               <td>
                 <button onClick={()=> eliminarProducto(producto.id) } className="btn btn-danger form-control">Eliminar</button>
+                <Link to={`/editar/${producto.id}`} className="btn btn-warning form-control" >Editar</Link>
               </td>
               <td>{producto.referencia}</td>
               <td>{producto.nombre}</td>

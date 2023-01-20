@@ -1,10 +1,11 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { useEffect } from "react";
 const urlProductos = "http://localhost:3100/productos";
 
-const Crear = () => {
+const Editar = () => {
   const [referencia, setReferencia] = useState("");
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
@@ -14,8 +15,9 @@ const Crear = () => {
   const [gama, setGama] = useState("");
   const [imagen, setImagen] = useState("");
   const navigate = useNavigate();
+  const {id} = useParams()
 
-  const crearProducto = async (e) => {
+  const actualizarProducto = async (e) => {
     e.preventDefault()
     const producto = {
       referencia,
@@ -27,10 +29,26 @@ const Crear = () => {
       gama,
       imagen,
     };
-    await axios.post(urlProductos, producto);
+    await axios.put(`${urlProductos}/${id}`, producto);
     navigate('/productos')
   };
 
+  const listarProducto = async () => {
+    const res = await axios.get(`${urlProductos}/${id}`)
+    setReferencia(res.data.referencia)
+    setNombre(res.data.nombre)
+    setDescripcion(res.data.descripcion)
+    setCantidad(res.data.cantidad)
+    setValor(res.data.valor)
+    setCategoria(res.data.categoria)
+    setGama(res.data.gama)
+    setImagen(res.data.imagen)
+  }
+
+  useEffect(()=> {
+    listarProducto()
+  }, [])
+  
   return (
     <section className="container bg-warning p-5">
       <form  className="form-control p-5">
@@ -100,11 +118,11 @@ const Crear = () => {
           <Link to={"/productos"} className="btn btn-danger form-control">
             Cancelar
           </Link>
-          <button onClick={crearProducto} className="btn btn-success form-control">Guardar</button>
+          <button onClick={actualizarProducto} className="btn btn-success form-control">Actualizar</button>
         </section>
       </form>
     </section>
   );
 };
 
-export default Crear;
+export default Editar;

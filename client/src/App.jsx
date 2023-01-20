@@ -2,6 +2,7 @@ import Listado from "./components/productos/Listado"
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Error404 from "./components/helpers/Error404"
 import Crear from "./components/productos/Crear"
+import Editar from "./components/productos/Editar"
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
   {
     path: '/crear',
     element: <Crear />,
+    errorElement: <Error404 />
+  },
+  {
+    path: '/editar/:id',
+    element: <Editar />,
     errorElement: <Error404 />
   }
 ])
